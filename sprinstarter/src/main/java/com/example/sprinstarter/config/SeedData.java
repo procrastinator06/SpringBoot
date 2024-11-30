@@ -13,7 +13,7 @@ import com.example.sprinstarter.services.PostService;
 
 @Component
 public class SeedData implements CommandLineRunner {
-    
+
     @Autowired
     private PostService postService;
 
@@ -21,7 +21,7 @@ public class SeedData implements CommandLineRunner {
     private AccountService accountService;
 
     @Override
-    public void run(String...args) throws Exception {
+    public void run(String... args) throws Exception {
 
         Account account01 = new Account();
         Account account02 = new Account();
@@ -29,16 +29,18 @@ public class SeedData implements CommandLineRunner {
         account01.setEmail("kaifnaseem46@gmail.com");
         account01.setFirstName("Md");
         account01.setPassword("password01");
+        account01.setLastName("Kaif");
 
         account02.setEmail("mdkaif5210@gmail.com");
-        account02.setFirstName("Kaif");
+        account02.setFirstName("firstname");
         account02.setPassword("password02");
+        account02.setLastName("lastname");
 
         accountService.save(account01);
         accountService.save(account02);
 
         List<Post> posts = postService.getAll();
-        if(posts.size() == 0) {
+        if (posts.size() == 0) {
             Post post01 = new Post();
             post01.setTitle("Post 01");
             post01.setBody("Post 01 Body...........");

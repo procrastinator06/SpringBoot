@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html  lang="en"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <!-- header section strats -->
 <header class="header_section">
@@ -21,12 +23,22 @@
           <li class="nav-item ">
             <a class="nav-link" href="/">Home </a>
           </li>
-          <li class="nav-item">
+
+            <span sec:authorize="!isAuthenticated()">
+            <li class="nav-item">
             <a class="nav-link" href="/register">Register</a>
           </li>
-          <li class="nav-item">
+            </span>
+            <span sec:authorize="!isAuthenticated()">
+            <li class="nav-item">
             <a class="nav-link" href="/login">Login</a>
           </li>
+          </span>
+          <span sec:authorize="isAuthenticated()">
+            <li class="nav-item">
+            <a class="nav-link" href="/profile">profile</a>
+          </li>
+          </span>
         </ul>
       </div>
     </nav>

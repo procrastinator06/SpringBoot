@@ -1,14 +1,14 @@
-package com.example.sprinstarter.config;
+package com.example.sprinstarter.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
@@ -18,13 +18,13 @@ public class WebSecurityConfig {
     private static final String[] WHITELIST = {
 
             "/",
-            "login",
+            "/login",
             "/register",
             "/db-console/**",
             "/css/**",
             "/fonts/**",
             "/images/**",
-            "/js/**"
+            "/js/**",
     };
 
     @Bean
@@ -35,7 +35,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests.requestMatchers(WHITELIST)
+                .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests.requestMatchers(WHITELIST)
                         .permitAll()
                         .anyRequest()
                         .authenticated())
@@ -49,7 +49,7 @@ public class WebSecurityConfig {
                         .permitAll())
                         .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/logout?sucess")
+                        .logoutSuccessUrl("/logout?success")
                         ).httpBasic(withDefaults());
 
         http.csrf(t -> t.disable());

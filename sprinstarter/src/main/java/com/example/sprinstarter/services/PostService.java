@@ -26,7 +26,7 @@ public class PostService {
        postRepository.delete(post);
     }
     public Post save(Post post) {
-        if(post.getId() == null || post.getId() == 0L) {
+        if (post.getId() == null){
             post.setCreatedAt(LocalDateTime.now());
         }
         return postRepository.save(post);
