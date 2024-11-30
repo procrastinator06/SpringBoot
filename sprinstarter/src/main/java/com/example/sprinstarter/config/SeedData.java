@@ -40,7 +40,7 @@ public class SeedData implements CommandLineRunner {
         accountService.save(account02);
 
         List<Post> posts = postService.getAll();
-        if (posts.size() == 0) {
+        if (posts.isEmpty()) {
             Post post01 = new Post();
             post01.setTitle("Post 01");
             post01.setBody("Post 01 Body...........");
